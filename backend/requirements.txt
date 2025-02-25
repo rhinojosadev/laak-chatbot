@@ -1,1 +1,10 @@
-flask
+langchain
+langchain-community
+pypdf
+chromadb
+tiktoken
+openai
+ollama
+llama-cpp-python
+unstructured
+unstructured[docx]
