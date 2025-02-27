@@ -16,6 +16,6 @@ COPY . /app
 
 RUN pip3 install -r /app/requirements.txt
 
-EXPOSE 8000
+EXPOSE 5000
 ENTRYPOINT ["python3"]
 CMD ["app.py"]

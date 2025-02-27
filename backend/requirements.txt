@@ -9,3 +9,5 @@ llama-cpp-python
 unstructured
 unstructured[docx]
 flask
+flasgger
+Flask-RESTful

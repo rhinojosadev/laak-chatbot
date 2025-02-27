@@ -44,7 +44,10 @@ def create_vectorstore(documents):
     if documents:
         vectorstore = Chroma.from_documents(documents, embedding=OpenAIEmbeddings())
         return vectorstore.as_retriever()
-
+    
+@app.route("/", methods=["GET"])
+def hello():
+       return jsonify({"response": "hello from laak"})
 
 # 📌 5️⃣ Endpoint para hacer preguntas
 @app.route("/query", methods=["POST"])
@@ -71,6 +74,7 @@ def query_docs():
 
     return jsonify({"response": response})
 
+
 # Ejecutar el servidor
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host='0.0.0.0', port=5000)
