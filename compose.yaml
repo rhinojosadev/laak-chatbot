@@ -1,9 +1,24 @@
 services:
+  ollama:
+    build: ./model
+    container_name: laak-model
+    ports:
+      - 11434:11434
+    volumes:
+      - model-laak:/ollama
+    entrypoint: ["/usr/bin/bash", "/start.sh"]
   backend:
     build: ./backend
+    container_name: laak-backend
     ports:
       - "8000:8000"
   frontend:
     build: ./frontend
+    container_name: laak-frontend
     ports:
       - "3000:3000"
+
+      
+volumes:
+   model-laak:
+    driver: local

@@ -1,9 +1,21 @@
-FROM --platform=$BUILDPLATFORM python:3.10-alpine AS builder
+# Usa una imagen base con Python
+FROM python:3.10-slim
+
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    libgmp-dev \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /app
 COPY requirements.txt /app
-RUN --mount=type=cache,target=/root/.cache/pip \
-    pip3 install -r requirements.txt
 COPY . /app
+
+RUN pip3 install -r /app/requirements.txt
+
 EXPOSE 8000
 ENTRYPOINT ["python3"]
 CMD ["app.py"]
