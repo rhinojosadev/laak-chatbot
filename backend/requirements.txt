@@ -11,3 +11,4 @@ unstructured[docx]
 flask
 flasgger
 Flask-RESTful
+langchain-ollama
