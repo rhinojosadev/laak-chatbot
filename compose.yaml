@@ -1,9 +1,33 @@
 services:
+  ollama:
+    build: ./model
+    container_name: laak-model
+    networks:
+      - laakNetwork
+    ports:
+      - 11434:11434
+    volumes:
+      - model-laak:/ollama
+    entrypoint: ["/usr/bin/bash", "/start.sh"]
   backend:
     build: ./backend
+    networks:
+      - laakNetwork
+    container_name: laak-backend
     ports:
-      - "8000:8000"
+      - "5000:5000"
   frontend:
     build: ./frontend
+    networks:
+      - laakNetwork
+    container_name: laak-frontend
     ports:
       - "3000:3000"
+
+networks:
+  laakNetwork:
+    driver: bridge
+      
+volumes:
+   model-laak:
+    driver: local
