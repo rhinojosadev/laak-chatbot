@@ -1,14 +1,14 @@
 langchain
 langchain-community
 pypdf
-chromadb
+langchain_chroma
 tiktoken
 openai
 ollama
 llama-cpp-python
-unstructured
-unstructured[docx]
 flask
 flasgger
 Flask-RESTful
 langchain-ollama
+langchain-unstructured
+python-magic 
