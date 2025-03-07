@@ -17,32 +17,45 @@ interface Message {
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
+  const API = "http://127.0.0.1:5000/api/v1/query";
 
-  const handlePost = async (text: string) => {
+  const handlePost = async (texto: string) => {
+    setMessages((prev) => [
+      ...prev,
+       {
+        text: texto,
+        isBot: false
+      }
+    ])
     setIsLoading(true);
-    setMessages((prev) => [...prev, { text, isBot: false }]);
+    try {
+      const respuesta = await fetch(API, { 
+        method: "POST",
+        headers: {"Content-type": "application/json;charset=UTF-8"},
+        body: JSON.stringify({
+          pregunta: texto
+        })
+      });
 
-    // TODO: Call API
-    // const { ok, message } = await botService(text);
-    // if (!ok) {
-    //   setMessages((prev) => [
-    //     ...prev,
-    //     { text: "Hubo un error", isBot: true },
-    //   ]);
-    // } else {
-    //   setMessages((prev) => [
-    //     ...prev,
-    //     {
-    //       text: message,
-    //       info: {
-    //         message,
-    //       },
-    //       isBot: true,
-    //     },
-    //   ]);
-    // }
+      const data = await respuesta.json()
 
-    setIsLoading(false);
+      setMessages((prev) => [
+        ...prev,
+         {
+          text: texto,
+          info: {
+            message: data.response
+          }, 
+          isBot: true
+        }
+      ])
+      setIsLoading(false);
+    
+    } catch (exception) {
+      console.log(exception);
+      setIsLoading(false);
+    }
+
   };
 
   return (
