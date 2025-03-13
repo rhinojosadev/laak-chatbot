@@ -12,7 +12,7 @@ logging.getLogger('flask_cors').level = logging.DEBUG
 
 app = Flask(__name__)
 
-cors = CORS(app, resources={r"/*": {"origins": "http://localhost:3000"}})
+cors = CORS(app, resources={r"/*": {"origins": "http://frontend:3000"}})
 
 
 @app.route("/", methods=["GET"])
@@ -55,7 +55,7 @@ def query_docs():
 
         prompt = ChatPromptTemplate.from_template(template)
 
-        llm = OllamaLLM(base_url="http://localhost:11434", model="llama3.2:3b")
+        llm = OllamaLLM(base_url="http://ollama:11434", model="llama3.2:3b")
 
         chain = prompt | llm
 

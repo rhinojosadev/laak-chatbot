@@ -14,9 +14,11 @@ class UtilSetDocuments:
     def __init__(self, file_path, db_path):
         self.db_path = db_path
         split_documents = UtilSetDocuments.text_split(UtilSetDocuments.read_text(file_path))
-        embeddings = UtilSetDocuments.embedding_ollama()
-        UtilSetDocuments.create_vector_db(self, docs=split_documents, embeddings=embeddings)
-
+        if split_documents != None:
+            embeddings = UtilSetDocuments.embedding_ollama()
+            UtilSetDocuments.create_vector_db(self, docs=split_documents, embeddings=embeddings)
+        else:
+            print("Error lectura de texto")
 
     def read_text(path):
         documents = []
@@ -51,7 +53,7 @@ class UtilSetDocuments:
 
     def embedding_ollama():
         try:
-            return OllamaEmbeddings(base_url="http://localhost:11434", model="llama3.2:3b")
+            return OllamaEmbeddings(base_url="http://ollama:11434", model="llama3.2:3b")
         except Exception as e:
             print(e)
 
