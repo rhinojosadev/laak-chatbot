@@ -3,7 +3,7 @@ services:
     build: ./model
     container_name: laak-model
     networks:
-      - laakNetwork
+      - laak_network
     ports:
       - 11434:11434
     volumes:
@@ -12,21 +12,20 @@ services:
   backend:
     build: ./backend
     networks:
-      - laakNetwork
+      - laak_network
     container_name: laak-backend
     ports:
       - "5000:5000"
   frontend:
     build: ./frontend
     networks:
-      - laakNetwork
+      - laak_network
     container_name: laak-frontend
     ports:
       - "3000:3000"
 
 networks:
-  laakNetwork:
-    driver: bridge
+  laak_network:
       
 volumes:
    model-laak:

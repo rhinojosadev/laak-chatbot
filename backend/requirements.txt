@@ -12,3 +12,4 @@ Flask-RESTful
 langchain-ollama
 langchain-unstructured
 python-magic 
+flask_cors
