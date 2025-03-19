@@ -25,18 +25,20 @@ def db_get():
     try:
         data = request.json
         pregunta = data.get("pregunta", "")
-        contexto = UtilGetContextDocument(query=pregunta, db_path='documents/chroma_context_db').get_document()
+        contexto = UtilGetContextDocument(query=pregunta, db_path='/app/documents/chroma_context_db').get_document()
         return jsonify({"response": contexto})
     except Exception as e:
+        logging.error(f"dbget {e}")
         return jsonify({"response": "There was an error init"})
 
 
 @app.route("/api/v1/dbinit", methods=["POST"]) 
 def db_init():
     try:
-        UtilSetDocuments(file_path='documents/files', db_path='documents/chroma_context_db')
+        UtilSetDocuments(file_path='/app/documents/files', db_path='/app/documents/chroma_context_db')
         return jsonify({"response": "Done"})
     except Exception as e:
+        logging.error(f"dbinit {e}")
         return jsonify({"response": "There was an error init"})
 
 
@@ -63,7 +65,7 @@ def query_docs():
        
         return jsonify({"response": respuesta})
     except Exception as e:
-        logging.error(f"{e}")
+        logging.error(f"query_docs {e}")
         return e
 
 
