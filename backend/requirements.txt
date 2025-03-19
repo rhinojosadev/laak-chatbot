@@ -1,5 +1,4 @@
 langchain
-langchain-community
 pypdf
 langchain_chroma
 tiktoken
@@ -13,3 +12,5 @@ langchain-ollama
 langchain-unstructured
 python-magic 
 flask_cors
+unstructured
+langchain_community 

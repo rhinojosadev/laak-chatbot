@@ -7,6 +7,9 @@ from langchain_community.document_loaders import PyPDFLoader, UnstructuredWordDo
 from langchain_community.vectorstores.utils import filter_complex_metadata
 from langchain_chroma import Chroma
 
+import logging
+
+
 '''
     Este clase guarda los documentos y crea la base de datos 
 '''
@@ -18,7 +21,7 @@ class UtilSetDocuments:
             embeddings = UtilSetDocuments.embedding_ollama()
             UtilSetDocuments.create_vector_db(self, docs=split_documents, embeddings=embeddings)
         else:
-            print("Error lectura de texto")
+            logging.error("Error lectura de texto")
 
     def read_text(path):
         documents = []
@@ -38,7 +41,7 @@ class UtilSetDocuments:
 
                 return documents
         except Exception as e:
-            print(e)
+             logging.error(f"read_text {e}")
 
     def text_split(documents):
         try:
@@ -49,13 +52,13 @@ class UtilSetDocuments:
             )
             return text_splitter.split_documents(documents)
         except Exception as e:
-            print(e)
+            logging.error(f"text_split {e}")
 
     def embedding_ollama():
         try:
             return OllamaEmbeddings(base_url="http://ollama:11434", model="llama3.2:3b")
         except Exception as e:
-            print(e)
+            logging.error(f"embedding_ollama {e}")
 
     def create_vector_db(self, docs, embeddings):
 
@@ -67,8 +70,7 @@ class UtilSetDocuments:
             )
             return vector_store
         except Exception as e:
-            print(e)
-
+            logging.error(f"create_vector_db {e}")
 '''
     Este clase obtiene los datos de la base de datos
 '''
@@ -84,5 +86,8 @@ class UtilGetContextDocument:
         self.query = query
 
     def get_document(self):
-        retrived_docs = self.retriver.invoke(self.query)
-        return "\n\n".join([doc.page_content for doc in retrived_docs])
+        try:
+            retrived_docs = self.retriver.invoke(self.query)
+            return "\n\n".join([doc.page_content for doc in retrived_docs])
+        except Exception as e:
+            logging.error(f"get_document {e}")
