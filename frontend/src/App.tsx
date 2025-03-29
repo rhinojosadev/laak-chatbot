@@ -5,6 +5,8 @@ import {
   TextMessageBox,
   TypingLoader,
 } from "./components";
+import { Modal } from "./components/modal/Modal";
+import { useLaakStore } from "./components/store";
 
 interface Message {
   text: string;
@@ -17,6 +19,7 @@ interface Message {
 function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
+  const { setField, formUser }  = useLaakStore();
   const API = "http://127.0.0.1:5000/api/v1/query";
 
   const handlePost = async (texto: string) => {
@@ -66,6 +69,11 @@ function App() {
         </h1>
 
         <div className="border-gray-700 border" />
+        { formUser.closeModal ? ( <>
+         <p className="mt-8">Nombre: {formUser.name}</p>
+         <p>Puesto: {formUser.position}</p>
+         <p>Compañía: {formUser.company}</p> </>) : null }
+
       </nav>
 
       <section className="mx-3 sm:mx-20 flex flex-col w-full h-[calc(100vh-50px)]  bg-white bg-opacity-10 p-5 rounded-3xl">
@@ -91,7 +99,52 @@ function App() {
                   )}
                 </div>
               </div>
-
+              {!formUser.closeModal ? (
+                  <Modal 
+                    header="Formulario Usuario"
+                    description="Aqui va la descripcion y el texto"
+                    onSubmit={() => {
+                      setField("closeModal", true);
+                    }}
+                  >
+                      <div className="mb-4">
+                        <label className="text-sm text-gray-500">Nombre</label>
+                        <input
+                          value={formUser.name}
+                          onChange={(e) =>{ 
+                            e.preventDefault(); 
+                            setField("name", e.target.value)
+                          }}
+                          type="text"
+                          className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 text-sm text-gray-500 focus:ring-blue-500"
+                          placeholder="Ingrese su nombre"
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label className="text-sm text-gray-500">Puesto</label>
+                        <input
+                          type="text"
+                          value={formUser.position}
+                          onChange={(e) => { 
+                            e.preventDefault(); 
+                            setField("position", e.target.value); 
+                          }}
+                          className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2  text-sm  text-gray-500 focus:ring-blue-500"
+                          placeholder="Ingrese su puesto"
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label className="text-sm text-gray-500">Empresa</label>
+                        <input
+                          type="text"
+                          value={formUser.company}
+                          onChange={(e) => setField("company", e.target.value)}
+                          className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2  text-sm  text-gray-500 focus:ring-blue-500"
+                          placeholder="Ingrese su empresa"
+                        />
+                      </div>
+                  </Modal>
+                    ): null}
               <TextMessageBox
                 onSendMessage={handlePost}
                 placeholder="Escribe aquí lo que deseas"
