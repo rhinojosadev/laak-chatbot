@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 
 from langchain_unstructured import UnstructuredLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -11,8 +12,21 @@ import logging
 
 
 '''
-    Este clase guarda los documentos y crea la base de datos 
+    Esta clase guarda los documentos y crea la base de datos 
 '''
+
+# Cargar variables de entorno
+load_dotenv()
+
+MODEL = os.getenv('MODEL')
+
+OLLAMA_BASE_URL = os.getenv('LLAMA_BASE_URL')
+OLLAMA_MODEL = os.getenv('LLAMA_MODEL')
+
+if MODEL == 'qwen':
+    OLLAMA_BASE_URL= os.getenv('QWEN_BASE_URL')
+    OLLAMA_MODEL= os.getenv('QWEN_MODEL')
+
 class UtilSetDocuments:
     def __init__(self, file_path, db_path):
         self.db_path = db_path
@@ -48,7 +62,7 @@ class UtilSetDocuments:
             text_splitter = RecursiveCharacterTextSplitter(
                 chunk_size=100,
                 chunk_overlap=20,
-                add_start_index=True                                      
+                add_start_index=True
             )
             return text_splitter.split_documents(documents)
         except Exception as e:
@@ -56,7 +70,7 @@ class UtilSetDocuments:
 
     def embedding_ollama():
         try:
-            return OllamaEmbeddings(base_url="http://ollama:11434", model="llama3.2:3b")
+            return OllamaEmbeddings(base_url=OLLAMA_BASE_URL, model=OLLAMA_MODEL)
         except Exception as e:
             logging.error(f"embedding_ollama {e}")
 
@@ -84,6 +98,7 @@ class UtilGetContextDocument:
             search_kwargs={"k": 10}
         )
         self.query = query
+        print("SELF QUERY: ", self.query)
 
     def get_document(self):
         try:
