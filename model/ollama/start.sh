@@ -1,5 +1,5 @@
 #!/bin/sh
-./bin/ollama serve &
+../bin/ollama serve &
 pid=$!
 sleep 5
 echo "Pulling llama3.2 model"

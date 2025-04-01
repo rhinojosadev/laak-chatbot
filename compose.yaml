@@ -1,7 +1,17 @@
 services:
-  ollama:
-    build: ./model
-    container_name: laak-model
+  # ollama:
+  #   build: ./model/ollama
+  #   container_name: laak-model
+  #   networks:
+  #     - laak_network
+  #   ports:
+  #     - 11434:11434
+  #   volumes:
+  #     - model-laak:/root/.ollama
+  #   entrypoint: ["/usr/bin/bash", "/start.sh"]
+  qwen:
+    build: ./model/qwen
+    container_name: laak-model-qwen
     networks:
       - laak_network
     ports:
@@ -16,6 +26,10 @@ services:
     container_name: laak-backend
     ports:
       - "5000:5000"
+    # depends_on:
+    #   - ollama
+    env_file:
+      - ./backend/.env
   frontend:
     build: ./frontend
     networks:
@@ -23,6 +37,8 @@ services:
     container_name: laak-frontend
     ports:
       - "3000:3000"
+    depends_on:
+      - backend
 
 networks:
   laak_network:

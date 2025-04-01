@@ -10,7 +10,8 @@ flasgger
 Flask-RESTful
 langchain-ollama
 langchain-unstructured
-python-magic 
+python-magic
 flask_cors
 unstructured
-langchain_community 
+langchain_community
+python-dotenv
