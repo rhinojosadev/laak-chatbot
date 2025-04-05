@@ -1,5 +1,4 @@
-# deepeval set-ollama llama3.2:3b --base-url="http://localhost:11434"
-
+# deepeval set-ollama qwen2.5:3b --base-url="http://localhost:11434"
 from deepeval.test_case import LLMTestCase
 from deepeval.metrics import (
     AnswerRelevancyMetric,
@@ -20,28 +19,28 @@ retrieval_context = load_context(context_file)
 test_cases = [
     LLMTestCase(
         input="¿Cómo se llama el proyecto?",
-        actual_output="El proyecto se llama 'Construcción de un robot hexápodo para reconocimiento de plagas'.",
+        actual_output="El nombre del proyecto es 'Construcción de un robot hexápodo para reconocimiento de plagas'.",
         expected_output="El proyecto se llama 'Construcción de un robot hexápodo para reconocimiento de plagas'.",
         retrieval_context=retrieval_context,
         context=retrieval_context
     ),
     LLMTestCase(
         input="¿De qué trata el proyecto?",
-        actual_output="El proyecto se refiere al desarrollo de un robot hexápodo que esté equipado con tecnología de reconocimiento de plagas para detectar infestaciones en cultivos.",
+        actual_output="El proyecto trata sobre la construcción de un robot hexápodo que utiliza Python y Ubuntu para la detección y reconocimiento de plagas en cultivos. También se realiza el procesamiento de imágenes con este robot. El objetivo es desarrollar e implementar software del robot, lo cual requiere un rendimiento adecuado tanto para el desarrollo como para la simulación y procesamiento de imágenes.",
         expected_output="El proyecto trata sobre el desarrollo de un robot hexápodo usando Python y Ubuntu para detección de plagas en cultivos.",
         retrieval_context=retrieval_context,
         context=retrieval_context
     ),
     LLMTestCase(
         input="¿Qué herramientas usa el proyecto?",
-        actual_output="El proyecto utiliza las siguientes herramientas: * Python * Ubuntu * OpenCV * ROS (Robot Operating System) Además, el proyecto también requiere herramientas específicas para procesamiento de imágenes. Sin embargo, no se mencionan otras herramientas específicas en el contexto proporcionado.",
+        actual_output="El proyecto usa Python y Ubuntu como herramientas.",
         expected_output="Las herramientas que usa el proyecto son: Python, Ubuntu, OpenCV y ROS.",
         retrieval_context=retrieval_context,
         context=retrieval_context
     ),
     LLMTestCase(
         input="¿Cuáles son los requisitos técnicos del proyecto?",
-        actual_output="Sí, puedo ayudarte. Los requisitos técnicos del proyecto son: - Un procesador Intel Core i5 de décima generación o superior. - 8 GB de memoria RAM como mínimo. - Un sistema operativo compatible con las herramientas de desarrollo requeridas para el proyecto (en este caso, ROS). - Un equipo de cómputo que pueda ejecutar entornos de programación, simulación y procesamiento de imágenes de manera adecuada.",
+        actual_output="Los requisitos técnicos del proyecto incluyen un procesador Intel Core i5 de décima generación o superior, 8 GB de memoria RAM mínima e sistema operativo Ubuntu 20.04. También se requiere que el equipo sea compatible con herramientas como Python, Ubuntu, OpenCV y ROS para el desarrollo e implementación del software del robot.",
         expected_output="Los requisitos técnicos son: procesador Intel Core i5 de décima generación o superior, 8 GB de memoria RAM como mínimo, y sistema operativo compatible con las herramientas de desarrollo requeridas para el proyecto (como Ubuntu 20.04 o Windows 10). El equipo debe poder ejecutar entornos de programación, simulación y procesamiento de imágenes.",
         retrieval_context=retrieval_context,
         context=retrieval_context
@@ -49,11 +48,11 @@ test_cases = [
 ]
 
 metrics = {
-    "Answer Relevancy": AnswerRelevancyMetric(),
-    "Faithfulness": FaithfulnessMetric(threshold=0.7, model="llama3.2:3b"),
-    "Contextual Precision": ContextualPrecisionMetric(threshold=0.7, model="llama3.2:3b"),
-    "Contextual Recall": ContextualRecallMetric(threshold=0.7, model="llama3.2:3b"),
-    "Contextual Relevancy": ContextualRelevancyMetric(threshold=0.7, model="llama3.2:3b"),
+    "Answer Relevancy": AnswerRelevancyMetric(threshold=0.7, model="qwen2.5:3b"),
+    "Faithfulness": FaithfulnessMetric(threshold=0.7, model="qwen2.5:3b"),
+    "Contextual Precision": ContextualPrecisionMetric(threshold=0.7, model="qwen2.5:3b"),
+    "Contextual Recall": ContextualRecallMetric(threshold=0.7, model="qwen2.5:3b"),
+    "Contextual Relevancy": ContextualRelevancyMetric(threshold=0.7, model="qwen2.5:3b"),
     "Hallucination": HallucinationMetric(threshold=0.5)
 }
 
