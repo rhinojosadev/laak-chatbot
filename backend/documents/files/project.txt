@@ -1,0 +1,4 @@
+Nombre del proyecto: Construcción de un robot hexápodo para reconocimiento de plagas. 
+Descripción: Desarrollo de un robot hexápodo usando Python y Ubuntu para detección de plagas en cultivos.
+Herramientas: Python, Ubuntu, OpenCV, ROS.
+Requisitos técnicos: El equipo de cómputo deberá contar con un procesador Intel Core i5 de décima generación o superior, 8 GB de memoria RAM como mínimo, y sistema operativo compatible con las herramientas de desarrollo requeridas para el proyecto (por ejemplo, Ubuntu 20.04 o Windows 10). Este equipo será utilizado para el desarrollo e implementación del software del robot, por lo que se requiere un rendimiento adecuado para ejecutar entornos de programación, simulación y procesamiento de imágenes.
