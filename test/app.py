@@ -19,30 +19,37 @@ retrieval_context = load_context(context_file)
 
 test_cases = [
     LLMTestCase(
-        input="¿Cómo se llama el proyecto?",
-        actual_output="El proyecto se llama 'Construcción de un robot hexápodo para reconocimiento de plagas'.",
-        expected_output="El proyecto se llama 'Construcción de un robot hexápodo para reconocimiento de plagas'.",
+        input="¿En qué consiste el proyecto?",
+        actual_output="Puedes dirigirte a Juan Pérez o a Jorge Salgado si tienes alguna pregunta general.",
+        expected_output="El proyecto consiste en el desarrollo de una plataforma de e-commerce personalizada para la venta de productos físicos",
         retrieval_context=retrieval_context,
         context=retrieval_context
     ),
     LLMTestCase(
-        input="¿De qué trata el proyecto?",
-        actual_output="El proyecto se refiere al desarrollo de un robot hexápodo que esté equipado con tecnología de reconocimiento de plagas para detectar infestaciones en cultivos.",
-        expected_output="El proyecto trata sobre el desarrollo de un robot hexápodo usando Python y Ubuntu para detección de plagas en cultivos.",
+        input="¿Qué tecnologías son utilizadas en el proyecto?",
+        actual_output="Las tecnologías utilizadas en el proyecto son: - React - Node.js - MongoDB - Express - GitHub - Vercel - Intel Core i5 de décima generación (no mencionada como tecnología, sino como hardware) - 8 GB de RAM - Notion",
+        expected_output="Las tecnologías utilizadas son React 18, Node.js 20, MongoDB, TailwindCSS y Express.",
         retrieval_context=retrieval_context,
         context=retrieval_context
     ),
     LLMTestCase(
-        input="¿Qué herramientas usa el proyecto?",
-        actual_output="El proyecto utiliza las siguientes herramientas: * Python * Ubuntu * OpenCV * ROS (Robot Operating System) Además, el proyecto también requiere herramientas específicas para procesamiento de imágenes. Sin embargo, no se mencionan otras herramientas específicas en el contexto proporcionado.",
-        expected_output="Las herramientas que usa el proyecto son: Python, Ubuntu, OpenCV y ROS.",
+        input="¿Cómo puedo acceder al repositorio en GitHub?",
+        actual_output="Para acceder al repositorio en GitHub, debes tener una cuenta activa. Para ello, debes enviar tu usuario a los responsables del proyecto para que puedas solicitar acceso y aceptar la invitación, posteriormente podrás clonar el repositorio y trabajar con él.",
+        expected_output="Para acceder al repositorio en GitHub, cada miembro debe tener una cuenta activa, enviar su usuario al Project Manager, solicitar acceso y aceptar la invitación para luego clonar el repositorio localmente.",
         retrieval_context=retrieval_context,
         context=retrieval_context
     ),
     LLMTestCase(
-        input="¿Cuáles son los requisitos técnicos del proyecto?",
-        actual_output="Sí, puedo ayudarte. Los requisitos técnicos del proyecto son: - Un procesador Intel Core i5 de décima generación o superior. - 8 GB de memoria RAM como mínimo. - Un sistema operativo compatible con las herramientas de desarrollo requeridas para el proyecto (en este caso, ROS). - Un equipo de cómputo que pueda ejecutar entornos de programación, simulación y procesamiento de imágenes de manera adecuada.",
-        expected_output="Los requisitos técnicos son: procesador Intel Core i5 de décima generación o superior, 8 GB de memoria RAM como mínimo, y sistema operativo compatible con las herramientas de desarrollo requeridas para el proyecto (como Ubuntu 20.04 o Windows 10). El equipo debe poder ejecutar entornos de programación, simulación y procesamiento de imágenes.",
+        input="¿Quién es el project manager del proyecto?",
+        actual_output="Juan Pérez es el Project Manager del proyecto.",
+        expected_output="Juan Pérez es el Project Manager del proyecto.",
+        retrieval_context=retrieval_context,
+        context=retrieval_context
+    ),
+    LLMTestCase(
+        input="¿Cuándo es el cierre del proyecto?",
+        actual_output="El cierre del proyecto está programado para el 26 de junio.",
+        expected_output="El cierre del proyecto será el 26 de junio.",
         retrieval_context=retrieval_context,
         context=retrieval_context
     ),
