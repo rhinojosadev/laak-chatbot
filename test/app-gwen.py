@@ -18,30 +18,37 @@ retrieval_context = load_context(context_file)
 
 test_cases = [
     LLMTestCase(
-        input="¿Cómo se llama el proyecto?",
-        actual_output="El nombre del proyecto es 'Construcción de un robot hexápodo para reconocimiento de plagas'.",
-        expected_output="El proyecto se llama 'Construcción de un robot hexápodo para reconocimiento de plagas'.",
+        input="¿A quién le puedo preguntar mis dudas?",
+        actual_output="Puedes preguntar tus dudas a Juan Pérez o a Jorge Salgado.",
+        expected_output="Cualquier duda general puede dirigirse a Juan Pérez o a Jorge Salgado.",
         retrieval_context=retrieval_context,
         context=retrieval_context
     ),
     LLMTestCase(
-        input="¿De qué trata el proyecto?",
-        actual_output="El proyecto trata sobre la construcción de un robot hexápodo que utiliza Python y Ubuntu para la detección y reconocimiento de plagas en cultivos. También se realiza el procesamiento de imágenes con este robot. El objetivo es desarrollar e implementar software del robot, lo cual requiere un rendimiento adecuado tanto para el desarrollo como para la simulación y procesamiento de imágenes.",
-        expected_output="El proyecto trata sobre el desarrollo de un robot hexápodo usando Python y Ubuntu para detección de plagas en cultivos.",
+        input="¿Qué tecnologías son utilizadas en el proyecto?",
+        actual_output="Las tecnologías utilizadas en el proyecto son React, Node.js, MongoDB, Express, GitHub y Vercel.",
+        expected_output="Las tecnologías utilizadas son React 18, Node.js 20, MongoDB, TailwindCSS y Express.",
         retrieval_context=retrieval_context,
         context=retrieval_context
     ),
     LLMTestCase(
-        input="¿Qué herramientas usa el proyecto?",
-        actual_output="El proyecto usa Python y Ubuntu como herramientas.",
-        expected_output="Las herramientas que usa el proyecto son: Python, Ubuntu, OpenCV y ROS.",
+        input="¿Cómo puedo acceder al repositorio en GitHub?",
+        actual_output="Para acceder al repositorio en GitHub, cada membro debe tener una cuenta activa e ingresar a través de su usuario. Luego, debe clonar el repositorio localmente.",
+        expected_output="Para acceder al repositorio en GitHub, cada miembro debe tener una cuenta activa, enviar su usuario al Project Manager, solicitar acceso y aceptar la invitación para luego clonar el repositorio localmente.",
         retrieval_context=retrieval_context,
         context=retrieval_context
     ),
     LLMTestCase(
-        input="¿Cuáles son los requisitos técnicos del proyecto?",
-        actual_output="Los requisitos técnicos del proyecto incluyen un procesador Intel Core i5 de décima generación o superior, 8 GB de memoria RAM mínima e sistema operativo Ubuntu 20.04. También se requiere que el equipo sea compatible con herramientas como Python, Ubuntu, OpenCV y ROS para el desarrollo e implementación del software del robot.",
-        expected_output="Los requisitos técnicos son: procesador Intel Core i5 de décima generación o superior, 8 GB de memoria RAM como mínimo, y sistema operativo compatible con las herramientas de desarrollo requeridas para el proyecto (como Ubuntu 20.04 o Windows 10). El equipo debe poder ejecutar entornos de programación, simulación y procesamiento de imágenes.",
+        input="¿Quién es el project manager del proyecto?",
+        actual_output="Pérez es el Project Manager del proyecto.",
+        expected_output="Juan Pérez es el Project Manager del proyecto.",
+        retrieval_context=retrieval_context,
+        context=retrieval_context
+    ),
+    LLMTestCase(
+        input="¿Cuándo es el cierre del proyecto?",
+        actual_output="El cierre del proyecto será el 26 de junio.",
+        expected_output="El cierre del proyecto será el 26 de junio.",
         retrieval_context=retrieval_context,
         context=retrieval_context
     ),
