@@ -1,5 +1,12 @@
 # laak-chatbot
 
+
+
+https://github.com/user-attachments/assets/c6d1d297-0ef2-429a-be8e-e8efb8f4fb12
+
+
+
+
 ## Instalacion Docker
 Windows:
 https://docs.docker.com/desktop/setup/install/windows-install/
